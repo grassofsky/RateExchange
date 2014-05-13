@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<!-- build.xml - a simple Ant buildfile -->
+<project name="javacookbook" default="all" basedir=".">
+
+  <!-- The directory containing source code -->
+  <property name="src.dir" value="src"/>
+  <property name="lib.dir" value="lib"/>
+
+  <!-- Temporary build directories -->
+  <property name="build.dir" value="build"/>
+  <property name="build.classes" value="${build.dir}/classes"/>
+
+  <property name="java.lib" value="${java.home}/jre/lib/rt.jar"/>
+  
+  <!-- Target to create the build directories prior to the -->
+  <!-- compile target. -->
+  <target name="prepare">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.classes}"/>
+  </target>
+
+  <target name="all" depends="project"/>
+
+  <target name="project" depends="prepare">
+    <javac srcdir="${src.dir}"
+           destdir="${build.classes}"
+           classpath="${java.lib}:${lib.dir}/junit.jar:${build.classses}"
+           debug="on"
+           includeantruntime="on"/>
+  </target>
+
+  <target name="clean" description="Remove all generated files.">
+    <delete dir="${build.dir}"/>
+  </target>
+</project>
