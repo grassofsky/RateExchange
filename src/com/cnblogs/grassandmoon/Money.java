@@ -32,7 +32,7 @@ public class Money {
 
     /**
        根据货币Money创建新的对象
-       @param Money 货币
+       @param m 货币
     */
     public Money(Money m) {
         setMoney(m.amount, m.unit);
@@ -54,6 +54,12 @@ public class Money {
        @return 相等为<code>true</code>, 不相等为<code>false</code>
     */
     public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null) return false;
+
+        if (getClass() != obj.getClass()) return false;
+
         Money other = (Money) obj;
         return amount == other.amount
             && unit.equals(other.unit);
